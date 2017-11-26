@@ -1,0 +1,6 @@
+#!/bin/bash
+function findupsearch () {
+ test / == "$PWD" && return || test -e "$1" && echo "$PWD/$1" && return || cd .. && findupsearch "$1"
+}
+
+findupsearch $1
