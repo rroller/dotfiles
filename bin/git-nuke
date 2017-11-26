@@ -1,0 +1,25 @@
+#!/bin/bash
+# Nuke your git repo, vert it back to master, no matter what
+
+# Abort a rebase, if there is one
+git rebase --abort
+
+# remove untracked files AND directories 
+git clean -df
+
+# Delete any rebase files that might be around
+rebase_file="$(git rev-parse --show-toplevel)/.git/rebase-apply"
+if [[ -d "$rebase_file" ]]; then
+  echo "Deleting $rebase_file"
+  rm -rf "$rebase_file"
+fi
+
+# revert any uncommitted changes
+git reset --hard origin/master
+
+# TODO: Support other branches
+# Make sure we are back on master
+git checkout master
+
+# replace local files even if you have unpushed commits.
+git pull -f
