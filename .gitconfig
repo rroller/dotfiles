@@ -1,0 +1,25 @@
+[user]
+	email = ronnie@ronnieroller.com
+	name = Ronnie Roller
+[branch]
+        autosetuprebase = always
+[color]
+        ui = auto
+        branch = auto
+        interactive = auto
+        status = auto
+[alias]
+        lol = log --graph --decorate --pretty=oneline --abbrev-commit
+        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+        stats = shortlog -sne
+        outgoing = log @{u}.. --name-status # See outgoing changes using git log
+        outdiff = log @{u}.. -p             # Diffs the outgoing changes with upstream
+        outdifftool = difftool @{u}         # See outgoing changes using difftool.
+[core]
+        pager = diff-so-fancy | less --tabs=4 -RFX
+        excludesfile = /home/rroller/.config/git/excludes
+        editor = vim
+[push]
+        default = upstream # Push only the commit(s) in branch1 to remote (other branches tracking remote not pushed)
